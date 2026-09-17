@@ -8,7 +8,7 @@ The application uses a structured JSON logging system that provides consistent l
 - **File Output**: All messages from `INFO` level and above are written to log files
 - **Log Format**: All logs are structured JSON for easy parsing and analysis
 - **Log Rotation**: Log files automatically rotate at 10MB with 5 backup files retained
-- **Log Location**: `~/.local/share/MangoTango/logs/mangotango.log` (varies by platform)
+- **Log Location**: `~/.local/share/MangoTango/logs/cibmangotree.log` (varies by platform)
 
 ### Using the Logger in Your Code
 
