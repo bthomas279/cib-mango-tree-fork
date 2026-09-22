@@ -245,13 +245,13 @@ class NgramsDashboardPage(BaseDashboardPage):
 
        
         with ui.dialog() as dialog, ui.card().classes("w-full").style("max-width: none"):
-            ui.label(f"User Viewer - {user}").classes("text-h6")
-            ui.label(
-                f"Total Posts: {total_num_posts}    "
-                f"First Post: { self._oldest_post.strftime("%H:%M:%S %d/%M/%Y")}"
-                f"Last Post: { self._newest_post.strftime("%H:%M:%S %d/%M/%Y")}"
-                     ).classes("text-body2 text-grey-7 q-mb-sm gap-4")
-            ui.button("Close", on_click=dialog.close) 
+            with ui.row().classes("w-full justify-between items-center"):
+                ui.label(f"User Viewer - {user}").classes("text-h6")
+                ui.button(icon="close", on_click=dialog.close).props("flat round dense") 
+            with ui.row().classes("text-body2 text-grey-7 gap-7"):
+                ui.label(f"Total Posts: {total_num_posts}")
+                ui.label(f"First Post: { self._oldest_post.strftime("%H:%M:%S %d/%M/%Y") }")
+                ui.label(f"Last Post: { self._newest_post.strftime("%H:%M:%S %d/%M/%Y") }")
             ui.aggrid(
                         {
                         "columnDefs": [
