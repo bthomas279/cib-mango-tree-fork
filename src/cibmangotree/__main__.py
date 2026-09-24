@@ -41,9 +41,6 @@ def main() -> None:
         print("No-op flag detected. All runtime imports loaded successfully.")
         sys.exit(0)
 
-    #Add the directory check here.
-
-
     # Initialize storage
     storage = Storage(app_name="CIB Mango Tree", app_author="Civic Tech DC")
 
