@@ -1,5 +1,5 @@
 """
-Services package for CIB Mango Tree CLI.
+Services package for Mango CLI.
 
 This package contains service modules that provide core functionality
 for the application, organized in a modular and testable architecture.

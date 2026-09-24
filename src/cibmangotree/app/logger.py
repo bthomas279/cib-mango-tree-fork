@@ -100,7 +100,7 @@ def setup_logging(
             "uvicorn": {"level": "WARNING", "propagate": True},
             "starlette": {"level": "WARNING", "propagate": True},
             # Application loggers - inherit from root level
-            "cibmangotree": {"level": level, "propagate": True},
+            "mangotango": {"level": level, "propagate": True},
             "app": {"level": level, "propagate": True},
             "analyzers": {"level": level, "propagate": True},
             "components": {"level": level, "propagate": True},

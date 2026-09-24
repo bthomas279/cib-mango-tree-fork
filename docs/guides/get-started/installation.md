@@ -169,13 +169,13 @@ The application opens in a standalone window on macOS, or in your default browse
 The application automatically creates data directories:
 
 === "MacOS"
-    `~/Library/Application Support/CIB Mango Tree/`
+    `~/Library/Application Support/MangoTango/`
 
 === "Windows"
-    `%APPDATA%/Civic Tech DC/CIB Mango Tree/`
+    `%APPDATA%/Civic Tech DC/MangoTango/`
 
 === "Linux"
-    `~/.local/share/CIB Mango Tree/`
+    `~/.local/share/MangoTango/`
 
 ### Database Initialization
 

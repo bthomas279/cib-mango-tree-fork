@@ -271,7 +271,7 @@ Application-wide structured JSON logging with configurable levels and automatic 
 - JSON-formatted structured logs with timestamps and context
 - Automatic log rotation (10MB files, 5 backups)
 - CLI-configurable log levels via `--log-level` flag
-- Log location: `~/.local/share/CIB Mango Tree/logs/cibmangotree.log`
+- Log location: `~/.local/share/CIB Mango Tree/logs/mangotango.log`
 
 **Usage Pattern:**
 

@@ -42,11 +42,11 @@ def main() -> None:
         sys.exit(0)
 
     # Initialize storage
-    storage = Storage(app_name="CIB Mango Tree", app_author="Civic Tech DC")
+    storage = Storage(app_name="MangoTango", app_author="Civic Tech DC")
 
     # Set up logging
     log_level = logging.INFO
-    log_file_path = Path(storage.user_data_dir) / "logs" / "cib-mango-tree.log"
+    log_file_path = Path(storage.user_data_dir) / "logs" / "mangotango.log"
     app_version = get_version() or "development"
     setup_logging(log_file_path, log_level, app_version)
 
