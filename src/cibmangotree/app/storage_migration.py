@@ -13,13 +13,13 @@ def storage_directory_migration(old: Path, new: Path) -> StorageMigrationStatus:
     if not old.exists():
         return StorageMigrationStatus.NOT_FOUND
 
-    if new.exists():
-        if any(new.iterdir()):
-            return StorageMigrationStatus.CONFLICT
-        new.rmdir()
-
-    # Move
+    # Move to new storage
     try:
+        if new.exists():
+            if any(new.iterdir()):
+                return StorageMigrationStatus.CONFLICT
+            new.rmdir()
+
         new.parent.mkdir(parents=True, exist_ok=True)
         old.rename(new)
 

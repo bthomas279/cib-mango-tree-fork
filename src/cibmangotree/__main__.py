@@ -77,7 +77,9 @@ def main() -> None:
         StorageMigrationStatus.CONFLICT,
         StorageMigrationStatus.ERROR,
     ):
-        logger.warning("Legacy data folder not migrated.")
+        logger.warning(
+            f"Legacy data folder not migrated. Old: {old_directory}. New: {newest_directory}"
+        )
 
     # Create App instance
     app = App(context=AppContext(storage=storage, suite=suite))
