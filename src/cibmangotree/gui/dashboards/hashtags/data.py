@@ -1,16 +1,11 @@
 """
 Thin data loading wrappers for the hashtags analyzer.
 
-Provides functions to:
-- Load and transform raw input data (replicates factory.py logic)
-- Run secondary analysis on-demand from primary output
+Provides functions to load and transform hashtag analysis data.
 """
-
-from datetime import datetime
 
 import polars as pl
 
-from cibmangotree.analyzers.hashtags.hashtags_base.analysis import secondary_analyzer
 from cibmangotree.analyzers.hashtags.hashtags_base.interface import (
     COL_TIME,
     OUTPUT_COL_HASHTAGS,
@@ -78,6 +73,27 @@ def load_transformed_raw_input(session: GuiSession) -> pl.DataFrame:
     return df_transformed
 
 
+def load_mapped_timestamps(session: GuiSession) -> pl.Series:
+    """Load the mapped timestamp column for the project open in the session.
+
+    Reads only that column. The semantic transform is the one inferred for the
+    user column, applied to the full series rather than the preview slice.
+    """
+    project = session.current_project
+    column_mapping = session.column_mapping
+    if project is None or not column_mapping or COL_TIME not in column_mapping:
+        raise ValueError("Timestamp column is not mapped")
+
+    user_column = column_mapping[COL_TIME]
+    input_path = session.app.context.storage._get_project_input_path(project.id)
+    series = pl.read_parquet(input_path, columns=[user_column]).to_series()
+
+    column = project.column_dict.get(user_column)
+    if column is not None:
+        series = column.semantic.try_convert(series)
+    return series
+
+
 def load_primary_output(session: GuiSession) -> pl.DataFrame:
     """
     Load primary output parquet and convert timewindow_start to datetime.
@@ -115,25 +131,6 @@ def load_primary_output(session: GuiSession) -> pl.DataFrame:
         )
 
     return df
-
-
-def run_secondary_analysis(
-    df_primary: pl.DataFrame,
-    timewindow: datetime,
-) -> pl.DataFrame:
-    """
-    Run secondary analysis for a single timewindow.
-
-    Thin wrapper around secondary_analyzer() from the Shiny app.
-
-    Args:
-        df_primary: Primary output DataFrame with timewindow_start column.
-        timewindow: The selected timewindow start datetime.
-
-    Returns:
-        DataFrame with per-hashtag stats (hashtags, users_all, users_unique, hashtag_perc).
-    """
-    return secondary_analyzer(df_primary, timewindow)
 
 
 def extract_users_for_hashtag(

@@ -71,7 +71,9 @@ class ImportOptionsDialog(ui.dialog):
 
             # Action buttons
             with ui.row().classes("w-full justify-end gap-2 mt-3"):
-                ui.button("Cancel", on_click=self.close).props("outline")
+                ui.button("Cancel", on_click=self.close, color="cancel").props(
+                    "outline"
+                )
                 ui.button(
                     "Retry Import",
                     icon="refresh",
@@ -211,7 +213,11 @@ class ImportOptionsDialog(ui.dialog):
 
                 # Validate
                 if new_skip_rows < 0 or new_skip_rows > 100:
-                    ui.notify("Invalid skip rows value", type="negative")
+                    ui.notify(
+                        "Invalid skip rows value",
+                        type="negative",
+                        color="mango-orange",
+                    )
                     return
 
                 # Create new session with updated config
@@ -235,5 +241,9 @@ class ImportOptionsDialog(ui.dialog):
                 self.close()
 
         except Exception as e:
-            ui.notify(f"Error updating configuration: {str(e)}", type="negative")
+            ui.notify(
+                f"Error updating configuration: {str(e)}",
+                type="negative",
+                color="mango-orange",
+            )
             print(f"Config update error:\n{format_exc()}")
