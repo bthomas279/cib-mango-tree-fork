@@ -135,7 +135,7 @@ class RunAnalysisStep:
                 cancel_btn = ui.button(
                     "Cancel Analysis",
                     icon="stop",
-                    color="cancel",
+                    color="negative",
                     on_click=lambda: cancel_event.set(),
                 ).props("outline")
                 cancel_btn.set_visibility(False)
@@ -243,7 +243,6 @@ class RunAnalysisStep:
                     AnalysisContext.run_worker,
                     analysis.model,
                     analyzer.id,
-                    analysis.column_mapping,
                     input_columns_data,
                     secondary_analyzer_ids,
                     analysis.app_context.storage,

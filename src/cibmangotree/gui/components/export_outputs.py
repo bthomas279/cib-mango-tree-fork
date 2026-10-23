@@ -286,8 +286,8 @@ class ExportDialog(ui.dialog):
                 ui.button(
                     "Back",
                     on_click=lambda: self._show_step("select_outputs"),
-                    color="cancel",
                     icon="arrow_back",
+                    color="cancel",
                 ).props("outline")
                 ui.button(
                     "Start Export",
@@ -352,7 +352,11 @@ class ExportDialog(ui.dialog):
 
     def _start_export(self):
         if self.format is None:
-            ui.notify("Please select an export format", type="warning")
+            ui.notify(
+                "Please select an export format",
+                type="warning",
+                color="mango-orange",
+            )
             self._show_step("configure_export")
             return
 
